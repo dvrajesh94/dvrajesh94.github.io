@@ -1,0 +1,114 @@
+<div>
+	<style>
+         table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+         
+         table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+         }
+         
+         table tr:nth-child(even) {
+            background-color: #ffffff;
+         }
+     </style>
+	<body>
+	</body>
+	<div align="center">
+		<button type="button" ng-click="placeOrder()">PlaceOrder</button>
+		<button type="button" ng-click="clearAll()">ClearAll</button>	
+	</div>
+	<div>
+		<table style="width:100%" border="1px">
+			<tr>
+				<th style="width:25%">Specs</th>
+				<th style="width:25%">
+					<input ng-click="brand = 'yamaha';unCheck1 = false;unCheck2 = false" ng-model="unCheck" type="radio"></input>
+					<img src = "../../images/yamaha_logo.png" width="50px"> </img>
+					<button ng-click="editYamaha();saveBrand = 'yamaha'" type="button" >Edit
+        			</button>
+        			<button ng-click="save()" type="button" >Save
+        			</button>
+				</th>
+				<th style="width:25%">
+					<input ng-click="brand = 'bajaj';unCheck = false;unCheck2 = false" ng-model="unCheck1" type="radio"></input>
+					<img src = "../../images/bajaj_logo.jpg" width="100px"> </img>
+					<button ng-click="editBajaj();saveBrand = 'bajaj'" type="button" >Edit
+        			</button>
+        			<button ng-click="save()" type="button" >Save
+        			</button>
+				</th>
+				<th style="width:25%">
+					<input ng-click="brand = 'harley';unCheck = false;unCheck1 = false" ng-model="unCheck2" type="radio"></input>
+					<img src = "../../images/harley_logo.jpg" width="100px"> </img>
+					<button ng-click="editHarley();saveBrand = 'harley'" type="button" >Edit
+        			</button>
+        			<button ng-click="save()" type="button" >Save
+        			</button>
+				</th>
+			</tr>				
+			<tbody>
+					<tr>
+						<td align="center"><b>Cost</b></td>
+						<td align="center" ng-repeat="bikeDet in bikeDetails | limitTo : 3">{{bikeDet.cost}}</td>
+					</tr>
+					<tr>
+						<td align="center">Displacement</td>
+						<td align="center" ng-repeat="bikeDet in bikeDetails | limitTo : 3">
+							<div ng-if="edit!=bikeDet.__t">{{bikeDet.displacement}}</div>
+							<select ng-if="edit==bikeDet.__t" chosen ng-options="value as value for value in displacement" ng-model="$parent.bikeDet.displacement">
+			          			<option></option>
+			          		</select>
+			          	</td>	
+					</tr>
+					<tr>
+						<td align="center">Maximum Power</td>
+						<td align="center"  ng-repeat="bikeDet in bikeDetails | limitTo : 3">{{bikeDet.maximumPower}}</td>
+					</tr>
+					<tr>
+						<td align="center">Maximum Torque</td>
+						<td align="center" ng-repeat="bikeDet in bikeDetails | limitTo : 3">{{bikeDet.maximumTorque}}</td>
+					</tr>
+					<tr>
+						<td align="center">Cylinders Count</td>
+						<td align="center" ng-repeat="bikeDet in bikeDetails | limitTo : 3">{{bikeDet.cylindersCount}}</td>
+					</tr>
+					<tr>
+						<td align="center">Gears Count</td>
+						<td align="center" ng-repeat="bikeDet in bikeDetails | limitTo : 3">
+							<div ng-if="edit!=bikeDet.__t">{{bikeDet.gearsCount}}</div>
+							<select ng-if="edit==bikeDet.__t" chosen ng-options="value as value for value in gears" ng-model="$parent.bikeDet.gearsCount">
+			          			<option></option>
+			          	</select>
+					</tr>
+					<tr>
+						<td align="center">Seat Height</td>
+						<td align="center" ng-repeat="bikeDet in bikeDetails | limitTo : 3">{{bikeDet.seatHeight}}</td>
+					</tr>
+					<tr>
+						<td align="center">Ground Clearance</td>
+						<td align="center" ng-repeat="bikeDet in bikeDetails | limitTo : 3">{{bikeDet.groundClearance}}</td>
+					</tr>
+					<tr>
+						<td align="center">Kerb/Wet Weight</td>
+						<td align="center" ng-repeat="bikeDet in bikeDetails | limitTo : 3">{{bikeDet.weight}}</td>
+					</tr>
+					<tr>
+						<td align="center">Fuel Tank Capacity</td>
+						<td align="center" ng-repeat="bikeDet in bikeDetails | limitTo : 3">{{bikeDet.tankCapacity}}</td>
+					</tr>
+					<tr>
+						<td align="center">Top Speed</td>
+						<td align="center" ng-repeat="bikeDet in bikeDetails | limitTo : 3">
+							<div ng-if="edit!=bikeDet.__t">{{bikeDet.topSpeed}}</div>
+							<select ng-if="edit==bikeDet.__t" chosen ng-options="value as value for value in speedRange" ng-model="$parent.bikeDet.topSpeed">
+			          			<option></option>
+			          		</select>
+						</td>
+					</tr>
+			</tbody>
+		</table>	
+	</div>
+</div>

@@ -1,0 +1,173 @@
+<div>
+	<style>
+         table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+         
+         table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+         }
+         
+         table tr:nth-child(even) {
+            background-color: #ffffff;
+         }
+         p {
+         	background-color: red;	
+         }
+     </style>
+	<body>
+	<div align="center">
+		<h1><p>Bike Customization</p></h1>
+	</div>
+	</body>
+	<div align="center">
+		<button type="button" ng-click="placeOrder()">PlaceOrder</button>
+		<button type="button" ng-click="clearAll()">ClearAll</button>	
+	</div>
+	<div>
+		<table style="width:100%" border="1px">
+			<tr>
+				<th style="width:25%">Specs</th>
+				<th style="width:25%">
+					<input ng-click="yamaha = !yamaha" type="checkbox"></input>
+					<img src = "../../images/yamaha_logo.png" width="50px"> </img>
+					<button ng-click="edits()" type="button" >Edit
+        			</button>
+        			<button ng-click="save()" type="button" >Save
+        			</button>
+				</th>
+				<th style="width:25%">
+					<input ng-click="bajaj = !bajaj" type="checkbox"></input>
+					<img src = "../../images/bajaj_logo.jpg" width="100px"> </img>
+					<button ng-click="edits1()" type="button" >Edit
+        			</button>
+        			<button ng-click="save()" type="button" >Save
+        			</button>
+				</th>
+				<th style="width:25%">
+					<input ng-click="harley = !harley" type="checkbox"></input>
+					<img src = "../../images/harley_logo.jpg" width="100px"> </img>
+					<button ng-click="edits2()" type="button" >Edit
+        			</button>
+        			<button ng-click="save()" type="button" >Save
+        			</button>
+				</th>
+			</tr>				
+			<tbody>
+				<tr>
+					<td align="center"><b>Cost</b></td>
+					<td align="center">{{cost[0].value}}</td>
+					<td align="center">{{cost[1].value}}</td>
+					<td align="center">{{cost[2].value}}</td>
+				</tr>
+				<tr>
+					<td align="center">Displacement</td>
+					<td align="center">
+						<div ng-if="!edit">{{selectedDisplace}}</div>
+						<select ng-if="edit" chosen ng-options="value as value for value in displacement" ng-model="$parent.selectedDisplace">
+	          			<option></option>
+	          		</select>
+          		</td>
+					<td align="center">
+						<div ng-if="!edit1">{{selectedDisplace1}}</div>
+						<select ng-if="edit1" chosen ng-options="value as value for value in displacement" ng-model="$parent.selectedDisplace1">
+	          			<option></option>
+	          		</select>
+          		</td>
+					<td align="center">
+						<div ng-if="!edit2">{{selectedDisplace2}}</div>
+						<select ng-if="edit2" chosen ng-options="value as value for value in displacement" ng-model="$parent.selectedDisplace2">
+	          			<option></option>
+	          		</select>
+          		</td>
+				</tr>
+				<tr>
+					<td align="center">Maximum Power</td>
+					<td align="center">16.8 Bhp @ 8500 rpm</td>
+					<td align="center">20 Bhp @ 8000 rpm</td>
+					<td align="center">22 Bhp @ 7500 rpm</td>
+				</tr>
+				<tr>
+					<td align="center">Maximum Torque</td>
+					<td align="center">15 Nm @ 7500 rpm</td>
+					<td align="center">18 Nm @ 8000 rpm</td>
+					<td align="center">20 Nm @ 8500 rpm</td>
+				</tr>
+				<tr>
+					<td align="center">Cylinders Count</td>
+					<td align="center">1</td>
+					<td align="center">1</td>
+					<td align="center">1</td>
+				</tr>
+				<tr>
+					<td align="center">Gears Count</td>
+					<td align="center">
+						<div ng-if="!edit">{{gear}}</div>
+						<select ng-if="edit" chosen ng-options="value as value for value in gears" ng-model="$parent.gear">
+		          			<option></option>
+		          	</select>
+	          	</td>
+					<td align="center">
+						<div ng-if="!edit1">{{gear1}}</div>
+						<select ng-if="edit1" chosen ng-options="value as value for value in gears" ng-model="$parent.gear1">
+		          			<option></option>
+		          	</select>
+					</td>
+					<td align="center">
+						<div ng-if="!edit2">{{gear2}}</div>
+						<select ng-if="edit2" chosen ng-options="value as value for value in gears" ng-model="$parent.gear2">
+		          			<option></option>
+		          	</select>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">Seat Height</td>
+					<td align="center">800mm</td>
+					<td align="center">900mm</td>
+					<td align="center">700mm</td>
+				</tr>
+				<tr>
+					<td align="center">Ground Clearance</td>
+					<td align="center">160mm</td>
+					<td align="center">170mm</td>
+					<td align="center">140mm</td>
+				</tr>
+				<tr>
+					<td align="center">Kerb/Wet Weight</td>
+					<td align="center">136kg</td>
+					<td align="center">152kg</td>
+					<td align="center">190kg</td>
+				</tr>
+				<tr>
+					<td align="center">Fuel Tank Capacity</td>
+					<td align="center">12 litres</td>
+					<td align="center">14 litres</td>
+					<td align="center">22 litres</td>
+				</tr>
+				<tr>
+					<td align="center">Top Speed</td>
+					<td align="center">
+						<div ng-if="!edit">{{speed}}</div>
+						<select ng-if="edit" chosen ng-options="value as value for value in speedRange" ng-model="$parent.speed">
+		          			<option></option>
+		          	</select>
+					</td>
+					<td align="center">
+						<div ng-if="!edit1">{{speed1}}</div>
+						<select ng-if="edit1" chosen ng-options="value as value for value in speedRange" ng-model="$parent.speed1">
+		          			<option></option>
+		          	</select>
+					</td>
+					<td align="center">
+						<div ng-if="!edit2">{{speed2}}</div>
+						<select ng-if="edit2" chosen ng-options="value as value for value in speedRange" ng-model="$parent.speed2">
+		          			<option></option>
+		          	</select>
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+	</div>
+</div>

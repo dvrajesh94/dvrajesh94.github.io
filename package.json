@@ -1,0 +1,18 @@
+{
+  "name": "pump-my-ride",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.3",
+    "express": "^4.14.1",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.5.8"
+  }
+}

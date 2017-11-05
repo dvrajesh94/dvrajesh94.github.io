@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="bikepage">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<style>
+         table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+         
+         table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+         }
+         
+         table tr:nth-child(even) {
+            background-color: #ffffff;
+         }   
+         b {
+         	color: red;
+         }
+         p {
+         	color:  blue;
+         }
+     </style>
+	<body ng-controller="bikesCtrl" background="../../images/color_back.jpg">
+		<button ng-click="goBack()">goBack</button>
+		<button ng-click="logOut()">LogOut</button>
+		<div align="center">
+			<h1><p>Here are Your Ordered Bikes Mr/Ms:{{logName}}</p></h1>
+		</div>
+		<div>
+			<table style="width:100%" border="1px">	
+					<th ng-repeat="heading in headings" ng-hide="bikeDetails.length < 4">	
+						{{heading}}
+					</th>
+				<tbody>
+					<tr align="center" ng-repeat="bikeDet in bikeDetails" ng-if="bikeDetails.length>2 && $index>2 && bikeDet.name == logName">
+						<!-- <div ng-show="bikeDetails.length<3 && bikeDet.name != logName"><h1><b>No Orders Found!!!</b></h1>
+						</div> -->
+						<td>
+							<b>{{bikeDet.__t}}</b><br></br>
+							<button ng-click="delete(bikeDet._id)">Cancel</button>
+						</td>
+						<td>{{bikeDet.cost}}</td>
+						<td>{{bikeDet.displacement}}</td>
+						<td>{{bikeDet.maximumPower}}</td>
+						<td>{{bikeDet.maximumTorque}}</td>
+						<td>{{bikeDet.cylindersCount}}</td>
+						<td>{{bikeDet.gearsCount}}</td>
+						<td>{{bikeDet.seatHeight}}</td>
+						<td>{{bikeDet.groundClearance}}</td>
+						<td>{{bikeDet.weight}}</td>
+						<td>{{bikeDet.tankCapacity}}</td>
+						<td>{{bikeDet.topSpeed}}</td>	
+					</tr>
+				</tbody>	
+			</table>
+		</div> 
+	</body>
+	<script type="text/javascript" src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28//angular-route.min.js"></script>
+	<script src= "../controller/bikes.js"></script>
+	<script src = "../Service/bikeService.js"></script>
+</html>
